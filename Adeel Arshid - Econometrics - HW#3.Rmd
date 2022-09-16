@@ -1,0 +1,67 @@
+---
+title: "Adeel Arshid - Econometrics - HW#3"
+author: "Adeel Arshid, Mario Wisa, Minghao Deng"
+date: "9/15/2022"
+output: html_document
+---
+
+load("~/Desktop/Household_Pulse_data.RData")
+
+
+
+```{r}
+load("~/Desktop/Household_Pulse_data.RData")
+
+restrict1 <- (Household_Pulse_data$MS == "anxious") | (Household_Pulse_data == "no worry over past 2 wks")
+data_new <- subset(Household_Pulse_data$ANXIOUS,restrict1)
+
+summary(restrict1)
+summary(data_new)
+
+```
+
+
+```{r}
+load("~/Desktop/Household_Pulse_data.RData")
+
+Household_Pulse_data1 <- subset(Household_Pulse_data, eat_in_restaurant =="eat at restaurant indoors")
+
+
+Household_Pulse_data2 <- subset(Household_Pulse_data, EEDUC =="bach deg")
+summary(Household_Pulse_data2)
+
+
+Household_Pulse_data3 <- subset(Household_Pulse_data1, RRACE == "White")
+summary(Household_Pulse_data3)
+```
+
+
+
+# vaccination status and covid status of workers working onsite and remotely.
+
+```{r}
+restrict1 <- (Household_Pulse_data$Works_onsite == "worked onsite") & (Household_Pulse_data$RECVDVACC == "yes got vaxx") | (Household_Pulse_data$RECVDVACC == "no did not get vaxx") & (Household_Pulse_data$HADCOVID == "yes doctor told had covid") | (Household_Pulse_data$HADCOVID == "no did not")
+restrict2 <- (Household_Pulse_data$Works_remote == "worked remotely") & (Household_Pulse_data$RECVDVACC == "yes got vaxx") | (Household_Pulse_data$RECVDVACC == "no did not get vaxx") & (Household_Pulse_data$HADCOVID == "yes doctor told had covid") | (Household_Pulse_data$HADCOVID == "no did not")
+data_Works_onsite <- subset(Household_Pulse_data,restrict2)
+data_Works_remote <- subset(Household_Pulse_data, restrict1)
+```
+
+# Summary of vaccination status and covid status of workers working onsite and remotely. 
+```{r}
+summary(data_Works_onsite$RECVDVACC)
+summary(data_Works_remote$RECVDVACC)
+summary(data_Works_onsite$HADCOVID)
+summary(data_Works_remote$HADCOVID)
+
+```
+
+
+
+
+
+
+
+
+
+
+
